@@ -236,40 +236,6 @@ namespace StockControlSystem_V1._0
 
             return retVal;
         }
-
-
-        /// <summary>
-        /// Retruns the required permissions from the user
-        /// </summary>
-        /// <param name="tableName">name of the table</param>
-        /// <param name="username">username to select</param>
-        /// <param name="password">password to select</param>
-        /// <returns>permission-number</returns>
-        public Int16 SelectPermissions(string tableName, string username, string password)
-        {
-            Int16 permissions = 888;
-
-            string query = "SELECT permissions FROM " + tableName + " WHERE username='" + username + "' AND password='" + password + "'";
-
-            if (this.OpenConnection())
-            {
-                MySqlCommand cmd = new MySqlCommand();
-
-                cmd.CommandText = query;
-
-                cmd.Connection = connection;
-
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    //0 because it's the first element in the select statment
-                    permissions = reader.GetInt16(0);
-
-                }
-            }
-            return permissions;
-        }
     }
 }
 
